@@ -7,24 +7,82 @@ namespace Projeto
     { 
         public static void Main(String[] args)
         {
-            Calculadora calc;
-            calc = new Calculadora();
 
-            double[] numeros = { 1.2, 1.3, 1.4, 2.4, 4.4 };
-
-            double n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            double n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-            double resultado = calc.Soma(n1, n2);
-            Console.WriteLine("resultado 1 =" + resultado);
+            //Mateus Silva
+            Console.Title = "Calculadora";
+            Console.WriteLine("============================ Calculadora ============================ ");
 
 
-            double resultado2 = calc.Soma(numeros);
-            Console.WriteLine("resultado 2 =" + resultado2);
+            double valor1 = 0, valor2 = 0, resultado, numero;
+            string operador, valorDigitado;
+            bool isNumeroInteiro;
 
 
-            Console.Read();
+            Console.WriteLine("Digite o 1 valor: ");
+            valorDigitado = Console.ReadLine();
+            
+            isNumeroInteiro = double.TryParse(valorDigitado, out numero);
+            
+            if (isNumeroInteiro)
+            {
+                valor1 = Math.Round(double.Parse(valorDigitado), 4);
+            }
+            else
+            {
+                Console.WriteLine("Digite um número válido");
+            }
+
+
+            Console.WriteLine("Digite a operação (' / | + | * | - | %(MOD)'): ");
+            operador = Console.ReadLine();
+
+
+            Console.WriteLine("Digite o 2 valor: ");
+            valorDigitado = Console.ReadLine();
+            isNumeroInteiro = double.TryParse(valorDigitado, out numero);
+            if (isNumeroInteiro)
+            {
+                valor2 = Math.Round(double.Parse(valorDigitado), 4);
+            }
+            else
+            {
+                Console.WriteLine("Digite um número válido");
+            }
+
+            // Escolha do operador
+            switch (operador)
+            {
+                case "+":
+                    resultado = Math.Round(valor1 + valor2, 4);
+                    Console.WriteLine($"{ valor1 } {'+'} { valor2 } = {resultado}");
+                    break;
+                case "-":
+                    resultado = Math.Round(valor1 - valor2, 4);
+                    Console.WriteLine($"{ valor1 } {'-'} { valor2 } = {resultado}");
+                    break;
+                case "*":
+                    resultado = Math.Round(valor1 * valor2, 4);
+                    Console.WriteLine($"{ valor1 } {'*'} { valor2 } = {resultado}");
+                    break;
+                case "/":
+                    resultado = Math.Round(valor1 / valor2, 4);
+                    Console.WriteLine($"{ valor1 } {'/'} { valor2 } = {resultado}");
+                    break;
+                case "%":
+                    resultado = Math.Round(valor1 % valor2, 4);
+                    Console.WriteLine($"{ valor1 } {'%'} { valor2 } = {resultado}");
+                    break;
+                default:
+                    Console.WriteLine("Digite uma operação válida");
+                    break;
+            }
+
+
+            Console.ReadKey();
         }
     }
-
 }
+
+        
+    
+
